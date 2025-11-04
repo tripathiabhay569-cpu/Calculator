@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator</title>
+    <style>
+    body{
+      text-align: center;
+    }
+    .num{
+        background-color:skyblue;
+      }
+      input{
+        padding: 15px;
+        width: 45vh;
+        border:2px solid black;
+        border-radius: 10px;
+        font-size: 40px;
+      }
+      .operator{
+        background-color: orange;
+      }
+      button{
+        padding: 20px;
+        border:none;
+        border-radius: 10px;
+        margin: 10px;
+        font-size: 25px;
+        color: white;
+        width:8.3vh;
+        transition: background-color 0.5s,transform 0.3s,box-shadow 0.3s;
+      }
+      button:hover{
+        transform: scale(1.1);
+        box-shadow:0 2px 2px 2px  yellow;
+        background-color: blue;
+      }
+      #Calculator{
+        border: 2px solid black;
+        border-radius: 15px;
+        background-color:grey;
+      }
+      @media(width:600px){
+        input{
+          width:90%;
+          height:20%;
+        }
+        button{
+          width: 10%;
+          height:10%;
+        }
+        #Calculator{
+          width:90%;
+          height:60%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="Calculator">
+      <input id="display" readonly><br>
+      <button class="num">7</button>
+      <button class="num">8</button>
+      <button class="num">9</button>
+      <button class="operator">C</button><br>
+      <button class="num">4</button>
+      <button class="num">5</button>
+      <button class="num">6</button>
+      <button class="operator">🔙</button><br>
+      <button class="num">1</button>
+      <button class="num">2</button>
+      <button class="num">3</button>
+      <button class="operator">=</button><br>
+      <button class="num">0</button>
+      <button class="operator">.</button>
+      <button class="operator">/</button>
+      <button class="operator">*</button><br>
+      <button class="operator">+</button>
+      <button class="operator">-</button>
+    </div>
+    <script>
+      let btn = document.querySelectorAll("button")
+      let dis = document.getElementById("display")
+      btn.forEach(function(btn){
+        btn.addEventListener("click",function(){
+          let value = btn.textContent
+          if(value === "C"){
+            dis.value = ""
+          }
+          else if(value === "="){
+            try{
+              dis.value = eval(dis.value)
+            }catch{
+              dis.value = "error"
+            }
+          }
+          else if(value === "🔙"){
+            dis.value = dis.value.slice(0,-1)
+          }
+          else{
+            dis.value += value
+          }
+        })
+      })
+    </script>
+  </body>
+</html>
